@@ -1,0 +1,12 @@
+beautifulsoup4==4.12.3
+bs4==0.0.2
+greenlet==3.0.3
+iniconfig==2.0.0
+packaging==24.0
+playwright==1.43.0
+pluggy==1.4.0
+pyee==11.1.0
+pytest==8.1.1
+pytest-asyncio==0.23.6
+soupsieve==2.5
+typing_extensions==4.11.0
