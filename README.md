@@ -11,7 +11,7 @@ https://www.airbnb.co.uk/rooms/50633275
 ### Basic summary
 * The solution is written in Python, as I created a similar solution in JavaScript not long ago ([see here](https://github.com/luke-pomeroy/adimo-test)) and thought it would be interesting to use Python this time.
 * asyncio is used so that functions can be run concurrently/asynchronously.
-* as some of the data needed is inside a modal, and this is not in the DOM upon render so I'm using the Playwright headless browser.
+* As some of the data needed is inside a modal, and this is not in the DOM upon render I'm using the Playwright headless browser.
 * BeautifulSoup is used to parse and scrape data from the HTML returned.
 * There are some basic test cases that can be run also.
 * When scraping is complete, results are saved as JSON in a file called output.json.
@@ -48,6 +48,8 @@ Install dependencies:
 ```
 pip install -r requirements.txt 
 ```
+
+## Execution
 To run the tests:
 ```
 pytest
