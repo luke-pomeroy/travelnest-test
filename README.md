@@ -1,55 +1,56 @@
+
 # Travelnest take home test
-
-This is my response to the Travelnest take home test, written in Python.
-
-## Task Summary
-Please write some code that scrapes property name, property type (e.g Apartment), number of bedrooms, bathrooms and list of the amenities for the following 3 properties:
-
+The task for this take-home test was to:
+* Scrape property name, type, number of bedrooms and bathrooms, and list amenities for a list of AirBnB property URLs, e.g.:
 https://www.airbnb.co.uk/rooms/33571268
 https://www.airbnb.co.uk/rooms/20669368
 https://www.airbnb.co.uk/rooms/50633275
+## Description of solution
+### Basic summary
+* The solution is written in Python, as I created a similar solution in JavaScript not long ago ([see here](https://github.com/luke-pomeroy/adimo-test)) and thought it would be interesting to use Python this time.
+* asyncio is used so that functions can be run concurrently/asynchronously.
+* as some of the data needed is inside a modal, and this is not in the DOM upon render playwright is used as a headless browser.
+* BeautifulSoup is used to parse and scrape data from the HTML returned.
+* There are some basic test cases that can be run also.
+* When scraping is complete, results are saved as JSON in a file called output.json.
+### Challenges
+* It looks like AirBnB uses dynamic class names, so selecting elements is not always straightforward.
+* It's likely that AirBnB has rate limiting, and a WAF to detect scraping so our IP is likely to be blocked after a while.
+* We need to check if AirBnB is redirecting us because the property no longer exists.
+### Further ideas/solutions
+* The DOM selectors used with BeautifulSoup are hard-coded. It would be better to have these as variables (or in a database for example) so we can easily change them when AirBnB inevitably changes their page structure.
+* We may want to expand the solution to cover other types of booking website.
+* It might be good to setup rotating proxies, so that we can avoid our IP being blocked. 
+* The functions are all in one file; if I had more time I would have made this a bit more modular.
+* The test cases are fairly basic and could be expanded further.
+* There isn't really any error handling in the functions. Although it works, there are likely edge cases we will come across when handling a larger number of URLs.
+* Some of the functions could do with further refinement / refactoring.
+* Performance could be further improved by using multiprocessing in addition to asyncio.
 
-This can be implemented in any language you prefer. Please put your project into a code repository and share it with us. Note that some of these URLs may not actually show property details – please handle this case appropriately.
-
-## Initial Observations
-- We can write this in any language - there are two approaches that I have used before, each with their own pros and cons:
-    - Using Python and BeautifulSoup4 with Requests (we can also use headless browser like Playright)
-    - Using Node/JavaScript and Cherio with Fetch or Axios (we can also use headless browser Puppeteer or Playright)
-- I chose to use Python for this task, as I did the same with Node/JS a few months ago and it's fun to try out a new challenge!
-- We can use pandas to create a DataFrame to contain the scraped data, then save it to a json file
-
-- Challenges:
-    - The class names of the elements we need to extract look random and probably rotate
-    - We may need to extract the elements based on their style
-    - Large companies like this will have defences from scrapers: a quick google shows that AirBnB uses these. They probably:
-        - Have request rate limits
-        - Possibly use honeypots (as we're only scraping one page without clicking links, shouldn't be an issue)
-        - Use bot detection of some form
-        - Are using a WAF and our IP is likely to get blocked after a while
-    - So we may need to use one or more proxies to rotate our IP
-    - May need to send a fake user agent with requests
-    - We may need to rate limit requests but as only 3 links should be fine for now
-    - We want this to be performant so should use async functions
-
-- We need a test suite to check that:
-    - Data is correctly recorded
-
-
-## Elements to extract / data to record
-- Status: found or not found
-- Property Name: first title at the top of page - h1 element
-- Propery type: first part of the second title, upto ' in ' - h2 element
-- Number of bedrooms: below the second title, second li element in div > ol
-- Bathrooms: below second title, last li in div > ol
-- List of amenities: requires click on Show More and is not in the DOM until clicked
-    - Button with text 'Show all N amenities'
-    Dialogue with:
-    - Amenity category (h3)
-    - ul > li with each amenity - div > div > div[2nd] > two divs with amenity name and description (if no description only 1 inner div)
-
-
-property name, property type (e.g Apartment), number of bedrooms, bathrooms and list of the amenities
-
-to run
-
-- playwright install
+### Dependencies
+* [Python3.12+](https://www.python.org/)
+* [Pytest](https://docs.pytest.org/) - testing framework
+* [Playwright](https://playwright.dev/) - headless browser
+* [Asyncio](https://docs.python.org/3/library/asyncio.html) - async functionality
+### Installation
+Create a virtual environment:
+```
+python -m venv venv
+```
+Activate the virtual environment:
+```
+. venv/bin/activate
+```
+Install dependencies:
+```
+pip install -r requirements.txt 
+```
+To run the tests:
+```
+pytest
+```
+To run the scraper:
+```
+python main.py
+```
+An 'output.json' file will be created containing the results.
