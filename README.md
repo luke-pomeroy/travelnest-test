@@ -34,7 +34,8 @@ https://www.airbnb.co.uk/rooms/50633275
 * [Pytest](https://docs.pytest.org/) - testing framework
 * [Playwright](https://playwright.dev/) - headless browser
 * [Asyncio](https://docs.python.org/3/library/asyncio.html) - async functionality
-### Installation
+
+## Installation
 Create a virtual environment:
 ```
 python -m venv venv
