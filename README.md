@@ -49,3 +49,7 @@ This can be implemented in any language you prefer. Please put your project into
 
 
 property name, property type (e.g Apartment), number of bedrooms, bathrooms and list of the amenities
+
+to run
+
+- playwright install
