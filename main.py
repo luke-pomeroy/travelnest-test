@@ -112,7 +112,6 @@ async def main(urls):
         await browser.close()
     pretty_json = json.dumps(data, indent=4) 
     output_to_json_file(pretty_json)
-    print(data)
     return data
 
 if __name__ == "__main__":
