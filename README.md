@@ -1,8 +1,8 @@
 
 # Travelnest take home test
 The task for this take-home test was to:
-* Scrape property name, type, number of bedrooms and bathrooms, and list amenities for a list of AirBnB property URLs.
-E.g.:
+* Scrape property name, type, number of bedrooms and bathrooms, and list amenities for a list of AirBnB property URLs:
+
 https://www.airbnb.co.uk/rooms/33571268
 https://www.airbnb.co.uk/rooms/20669368
 https://www.airbnb.co.uk/rooms/50633275 
